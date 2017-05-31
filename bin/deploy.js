@@ -1,19 +1,19 @@
 #! /usr/bin/env node
 
 /*
+ * Using the ShellJS library, to provide portable Unix shell
+ *   commands for Node.js. Read more at:
+ *   http://shelljs.org
+ */
+var shell = require('shelljs');
+
+/*
  * Check for the availability of required installations.
  */
 if (!shell.which('aws')) {
   shell.echo('ERROR | This script requires the AWS CLI to be installed.');
   shell.exit(1);
 }
-
-/*
- * Using the ShellJS library, to provide portable Unix shell
- *   commands for Node.js. Read more at:
- *   http://shelljs.org
- */
-var shell = require('shelljs');
 
 /*
  * Check for the availability of required command line arguments.
