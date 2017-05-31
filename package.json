@@ -20,9 +20,9 @@
     "aws,",
     "cloudformation"
   ],
-  "main": "index.js",
+  "preferGlobal": true,
   "bin": {
-    "deploy": "bin/deploy.js"
+    "regiment-deploy": "bin/deploy.js"
   },
   "scripts": {
     "test": "node test.js"
