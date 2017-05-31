@@ -1,20 +1,20 @@
 {
-  "name": "regiment",
+  "name": "@echelon-solutions/regiment",
   "description": "A command line tool that facilitates AWS CloudFormation deployments and stays out of your way.",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "author": {
     "name": "Khalid Zoabi",
     "email": "kzoabi@outlook.com",
     "url": "https://github.com/khalidx"
   },
-  "homepage": "https://github.com/echelon.solutions/regiment",
+  "homepage": "https://github.com/echelon-solutions/regiment",
   "repository": {
     "type": "git",
-    "url": "git://github.com/echelon.solutions/regiment.git"
+    "url": "git://github.com/echelon-solutions/regiment.git"
   },
   "bugs": {
-    "url": "https://github.com/echelon.solutions/regiment/issues"
+    "url": "https://github.com/echelon-solutions/regiment/issues"
   },
   "keywords": [
     "aws,",
