@@ -21,6 +21,9 @@
     "cloudformation"
   ],
   "main": "index.js",
+  "bin": {
+    "deploy": "bin/deploy.js"
+  },
   "scripts": {
     "test": "node test.js"
   },
