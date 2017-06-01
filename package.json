@@ -1,7 +1,7 @@
 {
   "name": "@echelon-solutions/regiment",
   "description": "A command line tool that facilitates AWS CloudFormation deployments and stays out of your way.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "author": {
     "name": "Khalid Zoabi",
