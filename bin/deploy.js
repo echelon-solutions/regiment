@@ -20,18 +20,20 @@ if (!shell.which('aws')) {
 /*
  * Check for the availability of required command line arguments.
  */
-var region = argumentRequired('--region');                    // The AWS Region argument
-var profile = argumentRequired('--profile');                  // The AWS Profile argument
-var bucketName = argumentRequired('--bucket-name');           // The AWS S3 Bucket name argument
-var stackName = argumentRequired('--stack-name');             // The CloudFormation stack name argument
-var parametersFile = argumentRequired('--parameters-file');   // The CloudFormation parameters file argument
+var arguments = {
+  region: argumentRequired('--region'),                    // The AWS Region argument
+  profile: argumentRequired('--profile'),                  // The AWS Profile argument
+  bucketName: argumentRequired('--bucket-name'),           // The AWS S3 Bucket name argument
+  stackName: argumentRequired('--stack-name'),             // The CloudFormation stack name argument
+  parametersFile: argumentRequired('--parameters-file')    // The CloudFormation parameters file argument
+};
 
 /*
  * Read the parameters from the parametersFile.
  */
 var parametersString = '';
 try {
-  var parametersFilePath = path.join(process.cwd(), parametersFile);
+  var parametersFilePath = path.join(process.cwd(), arguments.parametersFile);
   console.log('INFO | Reading parameters file from ' + parametersFilePath);
   var parameters = require(parametersFilePath);
   if (parameters.length > 0) {
@@ -57,7 +59,7 @@ var commandSuffix = '--region ' + arguments.region + ' --profile ' + arguments.p
  */
 var bucketCommand = 'aws s3 mb s3://' + arguments.bucketName + " " + commandSuffix;
 var packageCommand = 'aws cloudformation package --template-file ./cloudformation.yaml --s3-bucket ' + arguments.bucketName + ' --output-template-file packaged-cloudformation.yaml ' + commandSuffix;
-var deployCommand = 'aws cloudformation deploy --template-file ./packaged-cloudformation.yaml --stack-name ' + arguments.stackName + ' --capabilities CAPABILITY_NAMED_IAM ' + arguments.parametersString + commandSuffix;
+var deployCommand = 'aws cloudformation deploy --template-file ./packaged-cloudformation.yaml --stack-name ' + arguments.stackName + ' --capabilities CAPABILITY_NAMED_IAM ' + parametersString + commandSuffix;
 
 /*
  * Run the deployment steps by executing the commands.
