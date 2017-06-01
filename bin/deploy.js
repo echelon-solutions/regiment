@@ -1,5 +1,7 @@
 #! /usr/bin/env node
 
+const path = require('path');
+
 /*
  * Using the ShellJS library, to provide portable Unix shell
  *   commands for Node.js. Read more at:
@@ -29,7 +31,9 @@ var parametersFile = argumentRequired('--parameters-file');   // The CloudFormat
  */
 var parametersString = '';
 try {
-  var parameters = require('./' + parametersFile);
+  var parametersFilePath = path.join(process.cwd(), parametersFile);
+  console.log('INFO | Reading parameters file from ' + parametersFilePath);
+  var parameters = require(parametersFilePath);
   if (parameters.length > 0) {
     parametersString += '--parameter-overrides ';
     for (var i = 0, len = parameters.length; i < len; i++) {
