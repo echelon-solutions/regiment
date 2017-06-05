@@ -16,6 +16,8 @@ npm install -g @echelon-solutions/regiment
 
 [![NPM](https://nodei.co/npm/@echelon-solutions/regiment.png)](https://www.npmjs.com/package/@echelon-solutions/regiment)
 
+### Deploy
+
 ```sh
 regiment-deploy \
   --region <aws-region> \
@@ -23,6 +25,15 @@ regiment-deploy \
   --stack-name <stack-name> \
   --bucket-name <bucket-name> \
   --parameters-file <parameters-file>
+```
+
+### Retreat
+
+```sh
+regiment-retreat \
+  --region <aws-region> \
+  --profile <aws-profile> \
+  --stack-name <stack-name>
 ```
 
 ## License

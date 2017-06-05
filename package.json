@@ -22,7 +22,8 @@
   ],
   "preferGlobal": true,
   "bin": {
-    "regiment-deploy": "bin/deploy.js"
+    "regiment-deploy": "bin/deploy.js",
+    "regiment-retreat": "bin/retreat.js"
   },
   "scripts": {
     "test": "node test.js"
