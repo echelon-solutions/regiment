@@ -50,16 +50,23 @@ catch(e) {
 }
 
 /*
- * Define a common command suffix
- */
-var commandSuffix = '--region ' + arguments.region + ' --profile ' + arguments.profile;
-
-/*
  * Define the deployment commands.
  */
-var bucketCommand = 'aws s3 mb s3://' + arguments.bucketName + " " + commandSuffix;
-var packageCommand = 'aws cloudformation package --template-file ./cloudformation.yaml --s3-bucket ' + arguments.bucketName + ' --output-template-file packaged-cloudformation.yaml ' + commandSuffix;
-var deployCommand = 'aws cloudformation deploy --template-file ./packaged-cloudformation.yaml --stack-name ' + arguments.stackName + ' --capabilities CAPABILITY_NAMED_IAM ' + parametersString + commandSuffix;
+
+/*
+ * We always use the same 'aws s3 mb' command to attempt to create the 
+ * bucket, even if it already exists.
+ * 
+ * 'BucketAlreadyOwnedByYou' errors will only be returned outside of the 
+ * US Standard region (us-east-1). Inside the US Standard region (i.e. 
+ * when you don't specify a location constraint), attempting to recreate 
+ * a bucket you already own will succeed.
+ * Source http://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html
+ */
+var bucketCommand = 'aws s3 mb s3://' + arguments.bucketName + ' --region us-east-1 --profile ' + arguments.profile;
+
+var packageCommand = 'aws cloudformation package --template-file ./cloudformation.yaml --s3-bucket ' + arguments.bucketName + ' --output-template-file packaged-cloudformation.yaml --region ' + arguments.region + ' --profile ' + arguments.profile;
+var deployCommand = 'aws cloudformation deploy --template-file ./packaged-cloudformation.yaml --stack-name ' + arguments.stackName + ' --capabilities CAPABILITY_NAMED_IAM ' + parametersString + ' --region ' + arguments.region + ' --profile ' + arguments.profile;
 
 /*
  * Run the deployment steps by executing the commands.
