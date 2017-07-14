@@ -18,18 +18,33 @@
   },
   "keywords": [
     "aws,",
-    "cloudformation"
+    "cloudformation",
+    "sam",
+    "serverless",
+    "cloud"
   ],
   "preferGlobal": true,
   "bin": {
-    "regiment-deploy": "bin/deploy.js",
-    "regiment-retreat": "bin/retreat.js"
+    "regiment": "bin/regiment"
   },
   "scripts": {
-    "test": "node test.js"
+    "dev": "nodemon",
+    "build": "tsc"
   },
   "dependencies": {
-    "shelljs": "^0.7.7"
+    "aws-sdk": "^2.82.0",
+    "chalk": "^2.0.1",
+    "lowdb": "^0.16.2",
+    "shelljs": "^0.7.7",
+    "vorpal": "^1.12.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/chalk": "^0.4.31",
+    "@types/lowdb": "^0.15.0",
+    "@types/node": "^8.0.9",
+    "@types/shelljs": "^0.7.2",
+    "nodemon": "^1.11.0",
+    "ts-node": "^3.2.0",
+    "typescript": "^2.4.1"
+  }
 }
