@@ -16,24 +16,43 @@ npm install -g @echelon-solutions/regiment
 
 [![NPM](https://nodei.co/npm/@echelon-solutions/regiment.png)](https://www.npmjs.com/package/@echelon-solutions/regiment)
 
-### Deploy
+### Help
+
+Run `help` to learn more about each command.
 
 ```sh
-regiment-deploy \
+regiment help configure
+regiment help deploy
+regiment help retreat
+```
+
+### Configure
+
+Create a local config.json file.
+
+```sh
+regiment configure \
   --region <aws-region> \
   --profile <aws-profile> \
-  --stack-name <stack-name> \
-  --bucket-name <bucket-name> \
+  --stack <stack-name> \
+  --bucket <bucket-name> \
   --parameters-file <parameters-file>
+```
+
+### Deploy
+
+Deploy the AWS CloudFormation Stack to the cloud.
+
+```sh
+regiment deploy
 ```
 
 ### Retreat
 
+Delete the AWS CloudFormation Stack.
+
 ```sh
-regiment-retreat \
-  --region <aws-region> \
-  --profile <aws-profile> \
-  --stack-name <stack-name>
+regiment retreat
 ```
 
 ## License
