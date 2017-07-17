@@ -44,21 +44,20 @@ export class Commands {
     return Promise
     .resolve()
     .then(function () {
-      /* Check for the availability of required installations. */
+      console.log(self.color.inverse('Checking for local installation of the AWS CLI ...'))
       if (!shell.which('aws')) {
         throw new Error('ERROR | This script requires the AWS CLI to be installed.')
       }
-      /* Get configuration */
+      console.log(self.color.inverse('Loading the config.json configuration file ...'))
       let config = self.config.get()
       /* Check args are available */
       if (!config.bucket || !config.parameters || !config.profile || !config.region || !config.stack) {
         throw new Error('ERROR | This script requires a complete config.json file.')
       }
-      /* Read the parameters from the parametersFile. */
       let parametersString = ''
       try {
         var parametersFilePath = path.join(process.cwd(), config.parameters)
-        console.log('INFO | Reading parameters file from ' + parametersFilePath)
+        console.log(self.color.inverse('Reading CloudFormation parameters from ' + parametersFilePath + ' ...'))
         var parameters = require(parametersFilePath)
         if (parameters.length > 0) {
           parametersString += '--parameter-overrides '
@@ -91,10 +90,14 @@ export class Commands {
         throw new Error('ERROR | CloudFormation staging area S3 bucket creation failed.')
       }
       /* Resolve references in the CloudFormation template by packaging and uploading the packaged template to S3 */
+      console.log(self.color.inverse('Running the CloudFormation package command.'))
+      console.log(packageCommand)
       if (shell.exec(packageCommand).code !== 0) {
         throw new Error('ERROR | CloudFormation package failed.')
       }
       /* Deploy the CloudFormation infrastructure */
+      console.log(self.color.inverse('Running the CloudFormation deploy command.'))
+      console.log(deployCommand)
       let result = shell.exec(deployCommand)
       if (result.code !== 0) {
         if (result.code == 255 && result.stderr.indexOf('No changes to deploy. Stack ' + config.stack + ' is up to date') > -1) {
