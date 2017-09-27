@@ -1,6 +1,7 @@
 # @echelon-solutions/regiment
 
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fechelon-solutions%2Fregiment.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fechelon-solutions%2Fregiment?ref=badge_shield)
 
 A command line tool that facilitates AWS CloudFormation deployments and stays out of your way.
 
@@ -58,3 +59,6 @@ regiment retreat
 ## License
 
 MIT, see [LICENSE.md](http://github.com/echelon-solutions/regiment/blob/master/LICENSE.md) for details.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fechelon-solutions%2Fregiment.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fechelon-solutions%2Fregiment?ref=badge_large)
